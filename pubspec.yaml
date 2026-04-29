@@ -1,0 +1,14 @@
+name: aq_subject_runtime
+description: Subject runtime implementation for AQ Platform
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  aq_schema:
+    path: ../aq_schema
+
+dev_dependencies:
+  lints: ^5.0.0
