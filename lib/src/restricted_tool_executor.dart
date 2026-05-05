@@ -2,15 +2,20 @@
 
 import 'package:aq_schema/subject.dart';
 import 'package:aq_schema/tools.dart';
+import 'package:aq_schema/sandbox.dart';
 
 /// Реализация IToolExecutor с ограничениями и runtime grant.
+///
+/// S-02 fix: хранит [sessionContext] и передаёт его в toolRuntime.execute().
+/// TD-12: resources хранятся внутри sessionContext.resources.
 final class RestrictedToolExecutor implements IToolExecutor {
   final IAQToolRegistrySimple _toolRegistry;
   final List<ToolRef> _allowedTools;
   final String _subjectId;
   final IToolRuntimeExecutor? _toolRuntime;
 
-  /// Вызывается когда агент запрашивает tool которого у него нет.
+  final RunContext sessionContext;
+
   void Function(ToolRef ref)? onAccessRequested;
 
   RestrictedToolExecutor(
@@ -18,6 +23,7 @@ final class RestrictedToolExecutor implements IToolExecutor {
     this._allowedTools,
     this._subjectId, {
     required IToolRuntimeExecutor? toolRuntime,
+    required this.sessionContext,
     this.onAccessRequested,
   }) : _toolRuntime = toolRuntime;
 
@@ -51,13 +57,10 @@ final class RestrictedToolExecutor implements IToolExecutor {
     }
 
     if (_toolRuntime == null) {
-      return ToolOutput(
-        success: false,
-        error: 'No ToolRuntime configured for agent $_subjectId',
-      );
+      return ToolOutput(success: false, error: 'No ToolRuntime configured for agent $_subjectId');
     }
 
-    return await _toolRuntime.execute(contract, input);
+    return await _toolRuntime.execute(contract, input, sessionContext);
   }
 
   @override

@@ -4,3 +4,6 @@ export 'src/restricted_tool_executor.dart';
 export 'src/restricted_tool_executor_factory.dart';
 export 'src/executors/llm_agent_executor.dart';
 export 'src/constants/llm_agent_keys.dart';
+export 'src/subject_executor_registry.dart';
+export 'src/executors/subject_executor_adapters.dart';
+export 'src/adapters/openai_response_adapter.dart';

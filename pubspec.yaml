@@ -9,6 +9,8 @@ environment:
 dependencies:
   aq_schema:
     path: ../aq_schema
+  logging: ^1.2.0
 
 dev_dependencies:
   lints: ^5.0.0
+  test: ^1.25.0

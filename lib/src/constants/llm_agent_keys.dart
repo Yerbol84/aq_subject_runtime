@@ -15,7 +15,11 @@ class LlmAgentKeys {
   static const String llmToolName = 'llm';
 
   // ── SubjectInput keys ─────────────────────────────────────────────────────
-  static const String messages = 'messages';
+  static const String messages      = 'messages';
+  static const String systemPrompt  = 'system_prompt';
+
+  // ── Role values (дополнение к LlmToolKeys) ────────────────────────────────
+  static const String roleSystem = 'system';
 
   // ── SubjectOutput keys ────────────────────────────────────────────────────
   static const String content = 'content';

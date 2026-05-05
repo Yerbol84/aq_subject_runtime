@@ -4,9 +4,6 @@ import 'package:aq_schema/subject.dart';
 import 'package:aq_schema/sandbox.dart';
 import 'subject_session.dart';
 
-/// Реализация ISubjectSessionFactory.
-/// Создаёт SubjectSession. Не знает о RestrictedToolExecutor.
-/// Инициализация: ISubjectSessionFactory.initialize(SubjectSessionFactory());
 final class SubjectSessionFactory implements ISubjectSessionFactory {
   const SubjectSessionFactory();
 
